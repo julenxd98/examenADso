@@ -83,3 +83,127 @@ esac
 #borrar archivo temporal
 rm /tmp/input.txt
 }
+#En este dialog se preguntara por la mascara
+preguntarMascara(){
+# un archivo temporal donde guardar lo que vamos leyendo
+OUTPUT="/tmp/input.txt"
+
+
+# Dibuja el InputBox
+dialog --title "Configuracion de red" \
+--backtitle "Mascara" \
+--inputbox "Indica la mascara de red" 8 60 2>$OUTPUT
+
+# lee lo que esta escribiendo el usuario
+response=$?
+
+# lee lo que hay en OUTPUT usando la redirecction  $OUTPUT
+name=$(<$OUTPUT)
+
+#Entra en el cae
+case $response in
+#Guarda la variable mascara y visualiza lo que llevamos
+        0) mascara=$name
+                   echo "Por ahora llevas" "adaptador="$adaptador",IP="$IP",mascara="$mascara",enlace="$enlace",dns1="$dns1",dns2="$dns2
+        ;;
+        1) echo "Cancel pressed." ;;
+        255) echo "[ESC] key pressed." ;;
+esac
+
+#borrar archivo temporal
+rm /tmp/input.txt
+}
+#En este dialog se preguntara por la puerta de enlace
+preguntarenlace(){
+# un archivo temporal donde guardar lo que vamos leyendo
+OUTPUT="/tmp/input.txt"
+
+
+# Dibuja el InputBox
+dialog --title "Configuracion de red" \
+--backtitle "Enlace" \
+--inputbox "Indica la puerta de enlace" 8 60 2>$OUTPUT
+
+# lee lo que esta escribiendo el usuario
+response=$?
+
+# lee lo que hay en OUTPUT usando la redirecction  $OUTPUT
+name=$(<$OUTPUT)
+
+#Entra en el cae
+case $response in
+#Guarda la variable enlace y visualiza lo que llevamos
+        0) enlace=$name
+                   echo "Por ahora llevas" "adaptador="$adaptador",IP="$IP",mascara="$mascara",enlace="$enlace",dns1="$dns1",dns2="$dns2
+            ;;
+        1) echo "Cancel pressed." ;;
+        255) echo "[ESC] key pressed." ;;
+esac
+
+#borrar archivo temporal
+rm /tmp/input.txt
+}
+#En este dialog se preguntara por el  dns primario
+preguntardns(){
+# un archivo temporal donde guardar lo que vamos leyendo
+OUTPUT="/tmp/input.txt"
+
+
+# Dibuja el InputBox
+dialog --title "Configuracion de red" \
+--backtitle "DNS" \
+--inputbox "Indica el DNS primario" 8 60 2>$OUTPUT
+
+# lee lo que esta escribiendo el usuario
+response=$?
+
+# lee lo que hay en OUTPUT usando la redirecction  $OUTPUT
+name=$(<$OUTPUT)
+
+#Entra en el cae
+case $response in
+#Guarda la variable dns1 y visualiza lo que llevamos
+        0) dns1=$name
+                   echo "Por ahora llevas" "adaptador="$adaptador",IP="$IP",mascara="$mascara",enlace="$enlace",dns1="$dns1",dns2="$dns2
+         ;;
+        1) echo "Cancel pressed." ;;
+        255) echo "[ESC] key pressed." ;;
+esac
+
+#borrar archivo temporal
+rm /tmp/input.txt
+}
+#En este dialog se preguntara por el dns secundario
+preguntardns2(){
+# un archivo temporal donde guardar lo que vamos leyendo
+OUTPUT="/tmp/input.txt"
+
+
+# Dibuja el InputBox
+dialog --title "Configuracion de red" \
+--backtitle "DNS" \
+--inputbox "Indica el DNS secundario" 8 60 2>$OUTPUT
+
+# lee lo que esta escribiendo el usuario
+response=$?
+
+# lee lo que hay en OUTPUT usando la redirecction  $OUTPUT
+name=$(<$OUTPUT)
+
+#Entra en el cae
+case $response in
+#Guarda la variable dns2 y visualiza lo que llevamos
+        0) dns2=$name
+                   echo "Por ahora llevas" "adaptador="$adaptador",IP="$IP",mascara="$mascara",enlace="$enlace",dns1="$dns1",dns2="$dns2
+                 ;;
+        1) echo "Cancel pressed." ;;
+        255) echo "[ESC] key pressed." ;;
+esac
+
+#borrar archivo temporal
+rm /tmp/input.txt
+}
+#Para guardar en el archivo nuestra configuracion
+guardasarchivo() {
+                   echo "adaptador="$adaptador",IP="$IP",mascara="$mascara",enlace="$enlace",dns1="$dns1",dns2="$dns2 >> crearadaptador.conf
+}
