@@ -205,7 +205,13 @@ rm /tmp/input.txt
 }
 #Para guardar en el archivo nuestra configuracion
 guardasarchivo() {
-                   echo "adaptador="$adaptador",IP="$IP",mascara="$mascara",enlace="$enlace",dns1="$dns1",dns2="$dns2 >> crearadaptador.conf
+                   echo "auto" $adaptador >> /etc/network/interfaces
+		   echo	"iface" $adaptador "inet static" >> /etc/network/interfaces
+		   echo  "address" $IP >> /etc/network/interfaces
+		   echo "netmask" $mascara >> /etc/network/interfaces
+		   echo "gateway" $enlace >> /etc/network/interfaces 
+		   echo "dns-nameserver" $dns1 >> /etc/network/interfaces
+		   echo "dns-nameserver" $dns2 >> /etc/network/interfaces
 }
 #Creamos un bucle para que se ejecute nuestro menu tantas veces como sean necesarias
 while :
