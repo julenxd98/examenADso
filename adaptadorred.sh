@@ -207,3 +207,40 @@ rm /tmp/input.txt
 guardasarchivo() {
                    echo "adaptador="$adaptador",IP="$IP",mascara="$mascara",enlace="$enlace",dns1="$dns1",dns2="$dns2 >> crearadaptador.conf
 }
+#Creamos un bucle para que se ejecute nuestro menu tantas veces como sean necesarias
+while :
+do
+        dibujarmenu
+        read -p "Elige entre 0 y 7 " numero
+                case $numero in
+                        0)
+                                exit 0
+                                ;;
+                        1)
+                                preguntaradaptador
+                                ;;
+                        2)
+                                preguntarIP
+                                ;;
+                        3)
+                                preguntarMascara
+                                ;;
+                        4)
+                                preguntarenlace
+                                ;;
+                        5)
+                                preguntardns
+                                ;;
+                        6)
+                                preguntardns2
+                                ;;
+                        7)      guardasarchivo
+                                ;;
+                        8)                         echo "Llevas" "adaptador="$adaptador",IP="$IP",mascara="$mascara",enlace="$enlace",dns1="$dns1",dns2="$dns2
+                                ;;
+                        *)
+                                echo "Eso no es posible, vuelvo a preguntar" ;;
+                esac
+
+done
+echo "Si ves esto, algo ha salido mal"
