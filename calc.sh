@@ -1,77 +1,37 @@
-# ! /bin/bash
-# Calculadora Simples Shell Script Utilizando dialog#
-# Autor: Ewerton Tiago Azevedo
-# Data: 10-03-2010
+menu(){
+	echo "1) Sumar"
+	echo "2) Restar"
+	echo "3) Multiplicar"
+	echo "4) Dividir"
+	echo "5) Porcentaje"
+	echo "0)Guardar y Salir"
 
-
-tmp="/tmp/calc.tmp"
-
-tmp2="/tmp/calc2.tmp"
-
-function calcula() {
-
-rm -rf $tmp
-
-title= "Calculadora 1.0"
-
-dialog --backtitle "$title" --infobox 'Escolha o Tipo de Operação:' 0 0
-
-dialog --backtitle "$title" --radiolist 'Escolha o operador:' 0 0 0 'Soma' '+' 'On' 'Subtração' '-' 'off' 'Multiplicação' '*' 'off' 'Divisão' '/' 'off' 2> $tmp
-
-op=$(cat $tmp | tail -n 1);
-
-if [ $op = 'Soma' ]; then
-
-dialog --inputbox 'Digite um número:' 0 0 2>$tmp
-
-num1=$(cat $tmp |tail -n 1)
-
-dialog --inputbox 'Digite mais um número:' 0 0 2>$tmp2
-
-num2=$(cat $tmp2 |tail -n 1)
-
-
-result=$((num1+num2))
-
-
-
-dialog --infobox 'Resultado: '$result 0 0
-
-sleep 3
-
-dialog --infobox 'Você está Somando' 0 0
-
-elif [ $op = 'Divisão' ]; then
-
-rm -rf $tmp
-
-rm -rf $tmp2
-
-dialog --inputbox 'Digite um número:' 0 0 2>$tmp
-
-num1=$(cat $tmp |tail -n 1)
-
-dialog --inputbox 'Digite mais um número:' 0 0 2>$tmp2
-
-num2=$(cat $tmp2 |tail -n 1)
-
-sleep 1
-
-result=$((num1/num2))
-
-dialog --infobox  'Resultado: '$result 0 0
-
-sleep 2
-
-dialog --infobox 'Você está Dividindo' 0 0
-
-else
-
-echo "Existe Algum erro"
-
-fi
-
-
+	read -p "Elige la operación " option
 }
 
-calcula
+
+
+
+while true; do
+	menu
+	case $option in
+		1)
+			echo 'El resultado de la suma entre' $1 y $2 'es = ' $((1+2))
+		;;
+		2)
+			echo 'El resultado de la resta entre' $1 y $2 'es = ' $((1-2))
+		;;
+		3)
+			echo 'El resultado de la multiplicacion entre '$1 y $2 'es = ' $((1*2))
+
+		;;
+		4)
+			echo 'El resultado de la division entre' $1 y $2 'es = ' $((1/2))
+
+		;;
+		5)
+			echo $1 'respecto a ' $2 'supone un porcentaje = ' $((1%2))
+			;;
+		0) exit 0 ;;
+	esac
+done
