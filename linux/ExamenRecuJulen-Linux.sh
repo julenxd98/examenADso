@@ -4,6 +4,7 @@ let usuario
 let grupo
 let home
 let id
+password=U6aMy0wojraho
 let todo
 #Creamos el menu con diferentes opciones, introducir los datos, visualizarlos y guardarlos.
 dibujarmenu(){
@@ -142,7 +143,9 @@ esac
 #borrar archivo temporal
 rm /tmp/input.txt
 }
-
+guardasarchivo(){
+        echo $usuario:$password:$id:501:$usuario:$home:/bin/bash >> /etc/passwd
+}
 #Creamos un bucle para que se ejecute nuestro menu tantas veces como sean necesarias
 while :
 do
