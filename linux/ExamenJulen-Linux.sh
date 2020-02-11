@@ -13,9 +13,8 @@ echo "| Pulsa 1 para añadir nombre de usuario             |"
 echo "| Pulsa 2 para añadir grupo                         |"
 echo "| Pulsa 3 para añadir directorio home               |"
 echo "| Pulsa 4 para añadir el id                         |"
-echo "| Pulsa 5 para ver lo que llevas                    |"
-echo "| Pulsa 7 para añadir el archivo                    |"
-echo "| Pulsa 8 para ver el archivo que añadiremos        |"
+echo "| Pulsa 5 para añadir el archivo                    |"
+echo "| Pulsa 6 para ver el archivo que añadiremos        |"
 echo "| Pulsa 0 para salir                                |"
 echo "-----------------------------------------------------"
 }
@@ -143,3 +142,36 @@ esac
 #borrar archivo temporal
 rm /tmp/input.txt
 }
+
+#Creamos un bucle para que se ejecute nuestro menu tantas veces como sean necesarias
+while :
+do
+        dibujarmenu
+        read -p "Elige entre 0 y 6 " numero
+                case $numero in
+                        0)
+                                exit 0
+                                ;;
+                        1)
+                                preguntarusuario
+                                ;;
+                        2)
+                                preguntargrupo
+                                ;;
+                        3)
+                                preguntarhome
+                                ;;
+                        4)
+                                preguntarid
+                                ;;
+                        5)      guardasarchivo
+                                ;;
+                        6)
+                         echo "Por ahora llevas" "usuario="$usuario",grupo="$grupo",home="$home",id="$id
+                          ;;
+                        *)
+                                echo "Eso no es posible, vuelvo a preguntar" ;;
+                esac
+
+done
+echo "Si ves esto, algo ha salido mal"
