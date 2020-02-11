@@ -20,7 +20,7 @@ echo "| Pulsa 0 para salir                                |"
 echo "-----------------------------------------------------"
 }
 #En este dialog se preguntara por el usuario
-preguntaradaptador(){
+preguntarusuario(){
 # un archivo temporal donde guardar lo que vamos leyendo
 OUTPUT="/tmp/input.txt"
 
@@ -40,6 +40,99 @@ name=$(<$OUTPUT)
 case $response in
 #Guarda la variable adaptador y visualiza lo que llevamos
         0) usuario=$name
+           echo "Por ahora llevas" "usuario="$usuario",grupo="$grupo",home="$home",id="$id
+
+         ;;
+        1) echo "Cancel pressed." ;;
+        255) echo "[ESC] key pressed." ;;
+esac
+
+#borrar archivo temporal
+rm /tmp/input.txt
+}
+#En este dialog se preguntara por el usuario
+preguntargrupo(){
+# un archivo temporal donde guardar lo que vamos leyendo
+OUTPUT="/tmp/input.txt"
+
+
+# Dibuja el InputBox
+dialog --title "Añadir grupo" \
+--backtitle "Nuevo grupo" \
+--inputbox "Indica el nombre del grupo" 8 60 2>$OUTPUT
+
+# lee lo que esta escribiendo el usuario
+response=$?
+
+# lee lo que hay en OUTPUT usando la redirecction  $OUTPUT
+name=$(<$OUTPUT)
+
+#Entra en el case
+case $response in
+#Guarda la variable adaptador y visualiza lo que llevamos
+        0) grupo=$name
+           echo "Por ahora llevas" "usuario="$usuario",grupo="$grupo",home="$home",id="$id
+
+         ;;
+        1) echo "Cancel pressed." ;;
+        255) echo "[ESC] key pressed." ;;
+esac
+
+#borrar archivo temporal
+rm /tmp/input.txt
+}
+#En este dialog se preguntara por el usuario
+preguntarhome(){
+# un archivo temporal donde guardar lo que vamos leyendo
+OUTPUT="/tmp/input.txt"
+
+
+# Dibuja el InputBox
+dialog --title "Añadir directorio home" \
+--backtitle "Nuevo directorio home" \
+--inputbox "Indica el nombre del directorio home" 8 60 2>$OUTPUT
+
+# lee lo que esta escribiendo el usuario
+response=$?
+
+# lee lo que hay en OUTPUT usando la redirecction  $OUTPUT
+name=$(<$OUTPUT)
+
+#Entra en el case
+case $response in
+#Guarda la variable adaptador y visualiza lo que llevamos
+        0) home=$name
+           echo "Por ahora llevas" "usuario="$usuario",grupo="$grupo",home="$home",id="$id
+
+         ;;
+        1) echo "Cancel pressed." ;;
+        255) echo "[ESC] key pressed." ;;
+esac
+
+#borrar archivo temporal
+rm /tmp/input.txt
+}
+#En este dialog se preguntara por el usuario
+preguntarid(){
+# un archivo temporal donde guardar lo que vamos leyendo
+OUTPUT="/tmp/input.txt"
+
+
+# Dibuja el InputBox
+dialog --title "Añadir usuarios" \
+--backtitle "Nuevo usuario" \
+--inputbox "Indica el nombre de usuario" 8 60 2>$OUTPUT
+
+# lee lo que esta escribiendo el usuario
+response=$?
+
+# lee lo que hay en OUTPUT usando la redirecction  $OUTPUT
+name=$(<$OUTPUT)
+
+#Entra en el case
+case $response in
+#Guarda la variable adaptador y visualiza lo que llevamos
+        0) id=$name
            echo "Por ahora llevas" "usuario="$usuario",grupo="$grupo",home="$home",id="$id
 
          ;;
