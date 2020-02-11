@@ -8,10 +8,13 @@ if([decimal]$a -gt [decimal]$b) {
         }
 
 [decimal]$suma = $a + $b
+    echo $a $b   
         for($x = 1; $x -lt 6; $x++){
             
             $c = $a * $b
+            [decimal]$suma = [decimal]$suma + [decimal]$c
             $a = $b
             $b = $c
             echo $c
         }
+        echo 'La suma es: ' $suma
